@@ -44,7 +44,7 @@ class Program
                         break;
 
                     case "6":
-                        gradebook.PrintSortedGrades();
+                        PrintSortedGrades(gradebook);
                         break;
 
                     case "7":
@@ -86,7 +86,40 @@ class Program
         Console.WriteLine(" 7. Exit");
     }
 
-    static  PrintSortedGrades;
+    static void PrintSortedGrades(Gradebook book)
+    {
+        // Get the sorted list from your method
+        var sortedGrades = book.GetSortedGradesInAscendingOrder();
+
+        // Check if there are any grades
+        if (sortedGrades.Count == 0)
+        {
+            Console.WriteLine("\nNo grades recorded yet.");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            return;
+        }
+
+        // Print nice header
+        Console.WriteLine("\nSorted Grades (Lowest to Highest)");
+        Console.WriteLine("---------------------------------");
+
+        // Loop through and prints each grade with one decimal place formatting
+        for (int i = 0; i < sortedGrades.Count; i++)
+        {
+            string positionLabel = (i == 0) ? "Lowest" :
+                                  (i == sortedGrades.Count - 1) ? "Highest" :
+                                  $"{i + 1}";
+
+            // Format: position | grade (one decimal place)
+            Console.WriteLine($"{positionLabel,-10} | {sortedGrades[i],6:F1}");
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"Total grades: {sortedGrades.Count}");
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
+    }
 
 
     static void AddSingleGrade(Gradebook gradebook)
