@@ -122,21 +122,43 @@ class Program
     }
 
 
-    static void AddSingleGrade(Gradebook gradebook) 
+    static void AddSingleGrade(Gradebook gradebook)
     {
-        Console.Write("Enter grade (0-100): ");
-        string? input = Console.ReadLine()?.Trim();
+        while (true)   // ← outer loop: keeps asking until valid grade is added
+        {
+            Console.Write("Enter grade (0-100): ");
+            string? input = Console.ReadLine()?.Trim(); //trims extra white space
 
-        if (double.TryParse(input, out double grade))
-        {
-            gradebook.AddGrade(grade);
-            Console.WriteLine($"Grade {grade:F1} added successfully.");
-        }
-        else
-        {
-            Console.WriteLine("Invalid input. Please enter a number.");
+            if (string.IsNullOrWhiteSpace(input)) //checks if just a blank space is given 
+            {
+                Console.WriteLine("No input received. Please enter a number.");
+                continue;
+            }
+
+            if (double.TryParse(input, out double grade)) //tries to convert the input into a double value
+            {
+                try
+                {
+                    gradebook.AddGrade(grade);  // this will throw if < 0 or > 100
+                    Console.WriteLine($"Grade {grade:F1} added successfully.");
+                    return;                     // ← success → exit the method
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine("Please try again.");
+                    // loop continues → ask again
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+                // loop continues → ask again
+            }
         }
     }
+         
+    
 
     static void AddMultipleGrades(Gradebook gradebook)
     {
