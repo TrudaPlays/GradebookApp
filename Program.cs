@@ -86,6 +86,9 @@ class Program
         Console.WriteLine(" 7. Exit");
     }
 
+    static  PrintSortedGrades;
+
+
     static void AddSingleGrade(Gradebook gradebook)
     {
         Console.Write("Enter grade (0-100): ");

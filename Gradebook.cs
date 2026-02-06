@@ -35,28 +35,14 @@ public class Gradebook
         _grades.AddRange(grades);
     }
 
-    public void PrintSortedGrades()
+    public List<double> GetSortedGradesInAscendingOrder() //sorts the grades and stores them in a string
     {
         if (_grades.Count == 0)
         {
-            Console.WriteLine("No grades recorded yet.");
-            return;
+            return new List<double>();  
         }
 
-        var sorted = _grades.OrderBy(g => g).ToList();
-
-        Console.WriteLine($"\nSorted Grades (lowest to highest");
-
-        for (int i = 0; i < sorted.Count; i++)
-        {
-            string position = (i == 0) ? "Lowest" :
-                             (i == sorted.Count - 1) ? "Highest" :
-                             (i + 1).ToString();
-
-            Console.WriteLine($"{position,-8} | {sorted[i],6:F1}");
-        }
-
-        Console.WriteLine("───────────────────────────────────────────────────────");
+        return _grades.OrderBy(g => g).ToList();
     }
 
     public double GetAverage() //gets the average of the grades in the gradebook
