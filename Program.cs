@@ -162,41 +162,47 @@ class Program
 
     static void AddMultipleGrades(Gradebook gradebook)
     {
-        Console.WriteLine("Enter grades separated by commas or spaces (e.g. 85, 92 78 65.5):");
-        Console.Write("> ");
-        string? input = Console.ReadLine()?.Trim();
 
-        if (string.IsNullOrWhiteSpace(input))
+        while (true)
         {
-            Console.WriteLine("No grades entered.");
-            return;
-        }
+            Console.WriteLine("Enter grades separated by commas or spaces (e.g. 85, 92 78 65.5):");
+            Console.Write("> ");
+            string? input = Console.ReadLine()?.Trim();
 
-        var gradeStrings = input.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        var grades = new List<double>();
-
-        foreach (var gs in gradeStrings)
-        {
-            if (double.TryParse(gs, out double g))
+            if (string.IsNullOrWhiteSpace(input))
             {
-                grades.Add(g);
+                Console.WriteLine("No grades entered.");
+                return;
+            }
+
+            var gradeStrings = input.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var grades = new List<double>();
+
+            foreach (var gs in gradeStrings)
+            {
+                if (double.TryParse(gs, out double g))
+                {
+                    grades.Add(g);
+                }
+                else
+                {
+                    Console.WriteLine($"Skipping invalid entry: {gs}");
+                }
+            }
+
+            if (grades.Count > 0)
+            {
+                gradebook.AddGrade(grades);
+                Console.WriteLine($"Added {grades.Count} valid grade(s).");
+                return;
             }
             else
             {
-                Console.WriteLine($"Skipping invalid entry: {gs}");
+                Console.WriteLine("No valid grades were entered.");
             }
         }
-
-        if (grades.Count > 0)
-        {
-            gradebook.AddGrade(grades);
-            Console.WriteLine($"Added {grades.Count} valid grade(s).");
-        }
-        else
-        {
-            Console.WriteLine("No valid grades were entered.");
-        }
     }
+        
 
     static void ShowSummary(Gradebook gradebook) //shows average, highest, lowest and number of grades
     {
