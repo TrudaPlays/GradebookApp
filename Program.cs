@@ -72,16 +72,13 @@ class Program
 
     static void DisplayMenu()
     {
-        Console.WriteLine("╔════════════════════════════════════╗");
-        Console.WriteLine("║          GRADEBOOK APP             ║");
-        Console.WriteLine("╚════════════════════════════════════╝");
+        Console.WriteLine("Gradebook App");
         Console.WriteLine(" 1. Add single grade");
         Console.WriteLine(" 2. Add multiple grades");
         Console.WriteLine(" 3. View summary");
         Console.WriteLine(" 4. Clear all grades");
         Console.WriteLine(" 5. List all grades");
         Console.WriteLine(" 6. Exit");
-        Console.WriteLine("══════════════════════════════════════");
     }
 
     static void AddSingleGrade(Gradebook gradebook)
@@ -140,9 +137,7 @@ class Program
 
     static void ShowSummary(Gradebook gradebook)
     {
-        Console.WriteLine("\n┌──────────────────────────────┐");
-        Console.WriteLine("│         GRADE SUMMARY        │");
-        Console.WriteLine("└──────────────────────────────┘");
+        Console.WriteLine("\nGradebook summary");
 
         int count = gradebook.GetCount();
         if (count == 0)
@@ -155,7 +150,6 @@ class Program
         Console.WriteLine($"Average:       {gradebook.GetAverage():F2}");
         Console.WriteLine($"Highest:       {gradebook.GetHighest():F1}");
         Console.WriteLine($"Lowest:        {gradebook.GetLowest():F1}");
-        Console.WriteLine("──────────────────────────────");
     }
 
     static void ClearGrades(Gradebook gradebook)
