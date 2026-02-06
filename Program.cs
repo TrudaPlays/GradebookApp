@@ -52,7 +52,7 @@ class Program
                         return;
 
                     default:
-                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 6."); //if a number other than 1-7 is entered
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 7."); //if a number other than 1-7 is entered
                         break;
                 }
             }//catching errors and throwing error messages to handle user error gracefully
@@ -163,13 +163,13 @@ class Program
     static void AddMultipleGrades(Gradebook gradebook)
     {
 
-        while (true)
+        while (true) //outer loop will keep going until a valid grade/s is entered
         {
             Console.WriteLine("Enter grades separated by commas or spaces (e.g. 85, 92 78 65.5):");
             Console.Write("> ");
             string? input = Console.ReadLine()?.Trim();
 
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input)) //checks for empty space
             {
                 Console.WriteLine("No grades entered.");
                 return;
@@ -182,7 +182,7 @@ class Program
             {
                 if (double.TryParse(gs, out double g))
                 {
-                    grades.Add(g);
+                    grades.Add(g); //success will exit the method
                 }
                 else
                 {
@@ -194,7 +194,7 @@ class Program
             {
                 gradebook.AddGrade(grades);
                 Console.WriteLine($"Added {grades.Count} valid grade(s).");
-                return;
+                return; //success will exit the method
             }
             else
             {
