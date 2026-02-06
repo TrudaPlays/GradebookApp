@@ -8,7 +8,7 @@ public class Gradebook
 {
     private readonly List<double> _grades = new List<double>();
 
-    public void AddGrade(double grade)
+    public void AddGrade(double grade) //adds a single grade
     {
         if (grade < 0 || grade > 100)
         {
@@ -35,11 +35,11 @@ public class Gradebook
         _grades.AddRange(grades);
     }
 
-    public List<double> GetSortedGradesInAscendingOrder() //sorts the grades and stores them in a string
+    public List<double> GetSortedGradesInAscendingOrder() //sorts the grades and stores them in a string for the program.cs to access later
     {
         if (_grades.Count == 0)
         {
-            return new List<double>();  
+            return new List<double>();  //if there are no grades
         }
 
         return _grades.OrderBy(g => g).ToList();

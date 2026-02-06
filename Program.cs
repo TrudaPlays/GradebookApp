@@ -6,53 +6,53 @@ namespace GradebookApp;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Console.Title = "Gradebook App";
         var gradebook = new Gradebook();
 
         while (true)
         {
-            Console.Clear();
-            DisplayMenu();
-            Console.Write("\nChoose an option (1-6): ");
+            Console.Clear(); //clears the console
+            DisplayMenu(); //displays the menu for the user to choose options from
+            Console.Write("\nChoose an option (1-7): ");
 
             string? choice = Console.ReadLine()?.Trim();
 
             try
             {
-                switch (choice)
+                switch (choice) //switching through the different cases depending on user input
                 {
                     case "1":
-                        AddSingleGrade(gradebook);
+                        AddSingleGrade(gradebook); //adds one grade to the gradebook
                         break;
 
                     case "2":
-                        AddMultipleGrades(gradebook);
+                        AddMultipleGrades(gradebook); //adds multiple grades in a string separated by commas
                         break;
 
                     case "3":
-                        ShowSummary(gradebook);
+                        ShowSummary(gradebook); //prints a summary including the average, highest, lowest and number of grades
                         break;
 
                     case "4":
-                        ClearGrades(gradebook);
+                        ClearGrades(gradebook); //deletes everything in the gradebook
                         break;
 
                     case "5":
-                        ListAllGrades(gradebook);
+                        ListAllGrades(gradebook); //lists all the grades in unsorted order (the order the user puts them in)
                         break;
 
                     case "6":
-                        PrintSortedGrades(gradebook);
+                        PrintSortedGrades(gradebook); //prints out a neatly sorted grade list
                         break;
 
                     case "7":
-                        Console.WriteLine("\nThank you for using Gradebook App. Goodbye!");
+                        Console.WriteLine("\nThank you for using Gradebook App. Goodbye!"); //leaves the gradebookapp
                         return;
 
                     default:
-                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 6.");
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 6."); //if a number other than 1-7 is entered
                         break;
                 }
             }//catching errors and throwing error messages to handle user error gracefully
@@ -74,7 +74,7 @@ class Program
         }
     }
 
-    static void DisplayMenu()
+    static void DisplayMenu() //displays a menu
     {
         Console.WriteLine("Gradebook App");
         Console.WriteLine(" 1. Add single grade");
@@ -86,13 +86,13 @@ class Program
         Console.WriteLine(" 7. Exit");
     }
 
-    static void PrintSortedGrades(Gradebook book)
+    static void PrintSortedGrades(Gradebook book) //prints a sorted grade list from a previously made list that sorted all the lists in the gradebook
     {
         // Get the sorted list from your method
         var sortedGrades = book.GetSortedGradesInAscendingOrder();
 
         // Check if there are any grades
-        if (sortedGrades.Count == 0)
+        if (sortedGrades.Count == 0) // in case this is called before any grades are entered
         {
             Console.WriteLine("\nNo grades recorded yet.");
             Console.WriteLine("Press any key to continue...");
@@ -100,7 +100,7 @@ class Program
             return;
         }
 
-        // Print nice header
+        // Prints a nice header
         Console.WriteLine("\nSorted Grades (Lowest to Highest)");
         Console.WriteLine("---------------------------------");
 
@@ -122,7 +122,7 @@ class Program
     }
 
 
-    static void AddSingleGrade(Gradebook gradebook)
+    static void AddSingleGrade(Gradebook gradebook) 
     {
         Console.Write("Enter grade (0-100): ");
         string? input = Console.ReadLine()?.Trim();
@@ -176,14 +176,14 @@ class Program
         }
     }
 
-    static void ShowSummary(Gradebook gradebook)
+    static void ShowSummary(Gradebook gradebook) //shows average, highest, lowest and number of grades
     {
         Console.WriteLine("\nGradebook summary");
 
         int count = gradebook.GetCount();
         if (count == 0)
         {
-            Console.WriteLine("No grades recorded yet.");
+            Console.WriteLine("No grades recorded yet."); //for an empty gradebook
             return;
         }
 
@@ -193,7 +193,7 @@ class Program
         Console.WriteLine($"Lowest:        {gradebook.GetLowest():F1}");
     }
 
-    static void ClearGrades(Gradebook gradebook)
+    static void ClearGrades(Gradebook gradebook) //deletes everything!! :)
     {
         Console.Write("Are you sure you want to clear all grades? (yes/no): ");
         string? confirm = Console.ReadLine()?.Trim().ToLower();
@@ -209,7 +209,7 @@ class Program
         }
     }
 
-    static void ListAllGrades(Gradebook gradebook)
+    static void ListAllGrades(Gradebook gradebook) //spits out a messy list of grades
     {
         var grades = gradebook.Grades;
         if (grades.Count == 0)
