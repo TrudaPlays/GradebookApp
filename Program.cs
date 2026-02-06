@@ -44,6 +44,10 @@ class Program
                         break;
 
                     case "6":
+                        gradebook.PrintSortedGrades();
+                        break;
+
+                    case "7":
                         Console.WriteLine("\nThank you for using Gradebook App. Goodbye!");
                         return;
 
@@ -51,7 +55,7 @@ class Program
                         Console.WriteLine("Invalid choice. Please enter a number between 1 and 6.");
                         break;
                 }
-            }
+            }//catching errors and throwing error messages to handle user error gracefully
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine($"\nError: {ex.Message}");
@@ -74,11 +78,12 @@ class Program
     {
         Console.WriteLine("Gradebook App");
         Console.WriteLine(" 1. Add single grade");
-        Console.WriteLine(" 2. Add multiple grades");
-        Console.WriteLine(" 3. View summary");
-        Console.WriteLine(" 4. Clear all grades");
-        Console.WriteLine(" 5. List all grades");
-        Console.WriteLine(" 6. Exit");
+        Console.WriteLine(" 2. Add multiple grades in a string");
+        Console.WriteLine(" 3. View summary of the grades (including Average, Highest and Lowest Grade values and the total number of grades");
+        Console.WriteLine(" 4. Clear all grades from your gradebook (warning this cannot be undone)");
+        Console.WriteLine(" 5. List all grades in the order you inputted them");
+        Console.WriteLine(" 6. View your grades sorted from lowest to highest");
+        Console.WriteLine(" 7. Exit");
     }
 
     static void AddSingleGrade(Gradebook gradebook)
@@ -178,7 +183,6 @@ class Program
         }
 
         Console.WriteLine($"\nAll grades ({grades.Count}):");
-        Console.WriteLine("──────────────────────────────");
 
         int i = 1;
         foreach (var grade in grades)
