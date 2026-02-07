@@ -214,14 +214,14 @@ class Program
             Console.WriteLine("No grades recorded yet."); //for an empty gradebook
             return;
         }
-
+        // prints out the #grades, average, highest and lowest grade value
         Console.WriteLine($"Number of grades: {count}");
         Console.WriteLine($"Average:       {gradebook.GetAverage():F2}");
         Console.WriteLine($"Highest:       {gradebook.GetHighest():F1}");
         Console.WriteLine($"Lowest:        {gradebook.GetLowest():F1}");
     }
 
-    static void ClearGrades(Gradebook gradebook) //deletes everything!! :)
+    static void ClearGrades(Gradebook gradebook) //deletes everything!!
     {
         Console.Write("Are you sure you want to clear all grades? (yes/no): ");
         string? confirm = Console.ReadLine()?.Trim().ToLower();

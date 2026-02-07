@@ -6,7 +6,7 @@ namespace GradebookApp;
 
 public class Gradebook
 {
-    private readonly List<double> _grades = new List<double>();
+    private readonly List<double> _grades = new List<double>();//creates a dictionary to store the grades in
 
     public void AddGrade(double grade) //adds a single grade
     {
